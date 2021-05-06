@@ -1,6 +1,6 @@
 # waitpr
 
-See the stauts of github pr checks from the command line for only the current
+See the status of github pr checks from the command line for only the current
 pr. `waitpr` will spin showing you the up-to-date status until all checks are
 finished, then exit.
 
