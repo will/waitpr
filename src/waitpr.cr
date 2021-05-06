@@ -64,13 +64,13 @@ module Waitpr
       exit
     end
 
-    def initialize(@checks, @invalid = false)
+    def initialize(@checks)
       sizes = checks.map(&.name.size) << 0
       @name_size = sizes.max
     end
 
     def finished?
-      checks.all? &.finished? && !@invalid
+      checks.all? &.finished?
     end
 
     def to_s(io : IO)
@@ -96,6 +96,8 @@ module Waitpr
     def run
       print "\e[?25l" # hide cursor
       lines_to_clear = 0
+      duration = start
+
       while !done
         status = Status.fetch
         duration = Time.monotonic - start
@@ -113,6 +115,17 @@ module Waitpr
         lines_to_clear = status.checks.size + 2
         self.count += 1
       end
+
+      notify(duration, status.not_nil!) if duration > 1.minute
+    end
+
+    def notify(duration, status)
+      passed = status.checks.count(&.succeeded?)
+      total = status.checks.size
+
+      {% if flag?(:darwin) %}
+        `osascript -e 'display notification "#{passed}/#{total} passed after #{duration}" with title "PR checks done"'`
+      {% end %}
     end
   end
 end
