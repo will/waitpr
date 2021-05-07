@@ -6,6 +6,14 @@ See the status of github pr checks from the command line for only the current
 pr. `waitpr` will spin showing you the up-to-date status until all checks are
 finished, then exit.
 
+A notification will pop up if the checks take longer than one minute. Only on
+macOS right now, but patches welcome for linux.
+
+I've lost a lot of time getting distracted waiting for checks to finish. Then
+by the time I remember I'm supposed to merge a patch, someone else has already
+pushed to the main branch. So then I need to rebase and wait for the checks
+again, with a high probability of getting distracted again.
+
 ## Installation
 
 First make sure you have the [`gh` tool](https://github.com/cli/cli) installed
