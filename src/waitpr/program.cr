@@ -5,6 +5,8 @@ module WaitPR
     property done = false
     property count = 0
     property start : Time::Span
+    property notify_cutoff : Time::Span = 1.minute
+    property notify = true
 
     SPINNER = ["🕛 ", "🕐 ", "🕑 ", "🕒 ", "🕓 ", "🕔 ", "🕕 ", "🕖 ", "🕗 ", "🕘 ", "🕙 ", "🕚 "]
 
@@ -34,11 +36,11 @@ module WaitPR
         self.count += 1
       end
 
-      notify duration, status
+      notify duration, status if notify
     end
 
     def notify(duration, status)
-      return unless duration > 1.minute
+      return unless duration > notify_cutoff
       return unless status
       passed = status.checks.count(&.succeeded?)
       total = status.checks.size
@@ -46,6 +48,17 @@ module WaitPR
       {% if flag?(:darwin) %}
         `osascript -e 'display notification "#{passed}/#{total} passed after #{duration}" with title "PR checks done"'`
       {% end %}
+    end
+
+    def notify_cutoff=(from_optparse : String)
+      if from_optparse == "disable"
+        @notify = false
+        return
+      end
+      seconds = from_optparse.to_i { return "'#{from_optparse.inspect}' not valid" }
+      return "only positive numbers are allowed" unless seconds >= 0
+      @notify_cutoff = seconds.seconds
+      nil
     end
   end
 end
