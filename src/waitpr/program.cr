@@ -35,10 +35,12 @@ module WaitPR
         self.count += 1
       end
 
-      notify(duration, status.not_nil!) if duration > 1.minute
+      notify duration, status
     end
 
     def notify(duration, status)
+      return unless duration > 1.minute
+      return unless status
       passed = status.checks.count(&.succeeded?)
       total = status.checks.size
 
