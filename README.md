@@ -1,10 +1,12 @@
 # waitpr
 
+[![CI](https://github.com/will/waitpr/actions/workflows/ci.yml/badge.svg)](https://github.com/will/waitpr/actions/workflows/ci.yml)
+
 See the status of github pr checks from the command line for only the current
 pr. `waitpr` will spin showing you the up-to-date status until all checks are
 finished, then exit.
 
-## Install
+## Installation
 
 First make sure you have the [`gh` tool](https://github.com/cli/cli) installed
 and in your path. `waitpr` uses that for auth and to make the api calls.
@@ -17,12 +19,10 @@ maybe but I haven't yet.
 
 ```
 $ waitpr
-done! 00:01:35.920273513
-      lint	✅
-     specs	❌	https://github.com/will/waitpr/runs/12345
-ci (proj1)	✅
-ci (proj2)	✅
 ```
+
+![demo-screencap](https://user-images.githubusercontent.com/1973/117383861-91d64c00-ae96-11eb-980f-e9004e9f0b55.gif)
+
 
 ## Contributing
 
