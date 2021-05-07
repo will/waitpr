@@ -6,7 +6,7 @@ authors:
 
 targets:
   waitpr:
-    main: src/waitpr.cr
+    main: src/program.cr
 
 development_dependencies:
   ameba:

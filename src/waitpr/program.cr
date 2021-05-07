@@ -13,7 +13,6 @@ module WaitPR
     end
 
     def run
-      print "\e[?25l" # hide cursor
       lines_to_clear = 0
       duration = start
 
