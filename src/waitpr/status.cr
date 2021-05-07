@@ -13,7 +13,7 @@ module WaitPR
       end
 
       if json == "\n"
-        puts "no checks found yet, maybe try again"
+        puts "No checks found yet. If you just pushed, try again."
         exit 1
       elsif json == ""
         exit 1
