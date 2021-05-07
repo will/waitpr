@@ -29,8 +29,8 @@ module WaitPR
         end
         puts " #{Time.monotonic - start}"
 
-        puts status
-        lines_to_clear = status.checks.size + 2
+        print status
+        lines_to_clear = status.checks.size + 1
         self.count += 1
       end
 
