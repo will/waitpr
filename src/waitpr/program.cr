@@ -51,10 +51,6 @@ module WaitPR
     end
 
     def notify_cutoff=(from_optparse : String)
-      if from_optparse == "disable"
-        @notify = false
-        return
-      end
       seconds = from_optparse.to_i { return "'#{from_optparse.inspect}' not valid" }
       return "only positive numbers are allowed" unless seconds >= 0
       @notify_cutoff = seconds.seconds

@@ -12,7 +12,7 @@ OptionParser.parse do |parser|
   end
 
   parser.on("-x", "--no-notify", "Disable notifications") do
-    prog.notify_cutoff = "disable"
+    prog.notify = false
   end
 
   parser.on("-n SECONDS", "--notify=SECONDS", "Notify when finished if jobs take longer than n seconds (default 60)") do |arg|
