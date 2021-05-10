@@ -31,8 +31,8 @@ def parse(args, path = nil)
 
     parser.on("-h", "--help", "Show this help") do
       puts parser
-      puts "\nGlobal config can optionally be placed in ~/.config/waitpr/waitpr"
-      puts "Project-local config can optionally be placed in .waitpr and will supersede global config"
+      puts "\nGlobal arguments can optionally be placed in ~/.config/waitpr/waitpr"
+      puts "Project-local arguments can optionally be placed in .waitpr and will supersede global arguments"
       puts "Direct command arguments supersede both project-local and global"
       exit
     end

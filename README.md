@@ -35,8 +35,8 @@ Usage: waitpr [arguments]
     -n SECONDS, --notify=SECONDS     Notify when finished if jobs take longer than n seconds (default 60)
     -h, --help                       Show this help
 
-Global config can optionally be placed in ~/.config/waitpr/waitpr
-Project-local config can optionally be placed in .waitpr and will supersede global config
+Global arguments can optionally be placed in ~/.config/waitpr/waitpr
+Project-local arguments can optionally be placed in .waitpr and will supersede global arguments
 Direct command arguments supersede both project-local and global
 ```
 
