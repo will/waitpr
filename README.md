@@ -14,6 +14,8 @@ by the time I remember I'm supposed to merge a patch, someone else has already
 pushed to the main branch. So then I need to rebase and wait for the checks
 again, with a high probability of getting distracted again.
 
+![demo-screencap](https://user-images.githubusercontent.com/1973/117383861-91d64c00-ae96-11eb-980f-e9004e9f0b55.gif)
+
 ## Installation
 
 First make sure you have the [`gh` tool](https://github.com/cli/cli) installed
@@ -26,11 +28,17 @@ maybe but I haven't yet.
 ## Usage
 
 ```
-$ waitpr
+$ waitpr -h
+Usage: waitpr [arguments]
+    --version                        Show the version
+    -x, --no-notify                  Disable notifications
+    -n SECONDS, --notify=SECONDS     Notify when finished if jobs take longer than n seconds (default 60)
+    -h, --help                       Show this help
+
+Global config can optionally be placed in ~/.config/waitpr/waitpr
+Project-local config can optionally be placed in .waitpr and will supersede global config
+Direct command arguments supersede both project-local and global
 ```
-
-![demo-screencap](https://user-images.githubusercontent.com/1973/117383861-91d64c00-ae96-11eb-980f-e9004e9f0b55.gif)
-
 
 ## Contributing
 
