@@ -5,25 +5,38 @@ module WaitPR
     getter checks : Array(Check)
     getter name_size : Int32
 
-    def self.fetch
+    def self.fetch : Status?
       json = `gh pr view --json statusCheckRollup -q '.statusCheckRollup'`
       if json =~ /command not found/
-        puts "Please install the `gh' command"
+        STDERR.puts "Please install the `gh' command"
         exit 1
       end
 
       if json == "\n"
-        puts "No checks found yet. If you just pushed, try again."
-        exit 1
+        nil
       elsif json == ""
         exit 1
       else
         new Array(Check).from_json(json)
       end
     rescue JSON::ParseException
-      puts "bad json?"
-      puts json
+      STDERR.puts "bad json?"
+      STDERR.puts json
       exit
+    end
+
+    def self.fetch_wait : Status
+      times = 0
+      loop do
+        times += 1
+        result = self.fetch
+        return result if result
+        if times > 5
+          STDERR.puts "could not find any checks for this branch"
+          exit 1
+        end
+        sleep 1
+      end
     end
 
     def initialize(@checks)
